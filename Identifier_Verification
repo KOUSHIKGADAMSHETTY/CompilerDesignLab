@@ -1,53 +1,26 @@
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
-// Function to check if a character is a valid starting character for an identifier
-int isValidStartingCharacter(char ch) {
-    return (isalpha(ch) || ch == '_');
+#include<stdio.h>
+#include<ctype.h>
+int main()
+{
+char a[10];
+int flag, i=1;
+printf("Enter an identifier:");
+scanf("%s",a);
+if(isalpha(a[0]) || a[0] == '_')
+flag=1;
+else
+flag=0;
+while(a[i]!='\0')
+{
+  if (!isdigit(a[i]) && !isalpha(a[i]) && a[i] != '_')
+{
+flag=0;
+break;
 }
-
-// Function to check if a character is a valid character for an identifier
-int isValidCharacter(char ch) {
-    return (isalnum(ch) || ch == '_');
+i++;
 }
-
-// Function to check if an identifier is valid
-int isValidIdentifier(const char *identifier) {
-    // Check if the identifier is not empty
-    if (strlen(identifier) == 0) {
-        return 0;
-    }
-
-    // Check if the first character is a valid starting character
-    if (!isValidStartingCharacter(identifier[0])) {
-        return 0;
-    }
-
-    // Check each subsequent character
-    for (int i = 1; i < strlen(identifier); i++) {
-        if (!isValidCharacter(identifier[i])) {
-            return 0;
-        }
-    }
-
-    // If all checks pass, the identifier is valid
-    return 1;
-}
-
-int main() {
-    char identifier[50];
-
-    // Get the identifier from the user
-    printf("Enter an identifier: ");
-    scanf("%s", identifier);
-
-    // Check if the identifier is valid and print the result
-    if (isValidIdentifier(identifier)) {
-        printf("%s is a valid identifier.\n", identifier);
-    } else {
-        printf("%s is not a valid identifier.\n", identifier);
-    }
-
-    return 0;
+if(flag==1)
+printf("It is a valid identifier.\n");
+else
+printf("It is not a valid identifier.\n");
 }
