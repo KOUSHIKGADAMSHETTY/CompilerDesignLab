@@ -1,0 +1,21 @@
+//Count number of vowels and consonants in a given string
+%{
+    #include<stdio.h>
+    int vow_count=0;
+    int const_count =0;
+%}
+  
+%%
+[a|e|i|o|u|A|E|I|O|U]              {vow_count++;  }
+[a-z A-Z(^a|e|i|o|u|A|E|I|O|U]     {const_count++;}
+%%
+
+int yywrap(){}
+int main()
+{
+    printf("Enter the string of vowels and consonents:");
+    yylex();
+    printf("Number of vowels are:  %d\n", vow_count);
+    printf("Number of consonants are:  %d\n", const_count);
+    return 0;
+} 
